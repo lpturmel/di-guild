@@ -1,0 +1,28 @@
+[package]
+name = "di-slash"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1.39.2", features = ["rt", "macros", "rt-multi-thread"] }
+di-core = { path = "../di-core" }
+reqwest = { workspace = true, features = ["json", "rustls-tls"] }
+dotenv = "0.15.0"
+ed25519-dalek = "2.1.1"
+axum = { version = "0.7.5", features = ["macros"] }
+lambda_http = "0.13.0"
+lambda_runtime = "0.13.0"
+bytes = "1.7.1"
+tracing-subscriber = { version = "0.3.18", features = ["json"] }
+tracing = "0.1.40"
+axum-extra = { version = "0.9.3", features = ["typed-header"] }
+hex = "0.4.3"
+serde_json.workspace = true
+serde = { workspace = true, features = ["derive"] }
+http-body-util = "0.1.2"
+tower = "0.4.13"
+tower-service = "0.3.2"
+axum-aws-lambda = "0.8.0"
+openssl = { version = "0.10.66", features = ["vendored"] }
+tower-http = { version = "0.5.2", features = ["trace"] }
+rand = "0.8.5"
