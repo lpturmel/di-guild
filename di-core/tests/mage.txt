@@ -1,0 +1,15 @@
+# Ghostmage - Frost - 2024-08-05 17:56 - US/Zul'jin
+# SimC Addon 11.0.0-01
+# WoW 11.0.0.55939, TOC 110000
+# Requires SimulationCraft 1000-01 or newer
+
+mage="Ghostmage"
+level=70
+race=night_elf
+region=us
+server=zuljin
+role=spell
+professions=alchemy=19/herbalism=26
+spec=frost
+
+talents=CAEArhxZfsv/vllYUrQS3iw2nPzYzsZBzwMziBzYmGjxYmZGGmBmZmZmZmZmZmZmZGzAAAAAAAAAAAAYWAAAAAAAAA

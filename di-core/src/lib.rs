@@ -1,8 +1,9 @@
 #![allow(clippy::new_ret_no_self)]
 use error::Result;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 pub mod error;
+pub mod simc;
 
 pub const RAIDBOTS_BASE_URL: &str = "https://www.raidbots.com";
 
@@ -67,8 +68,11 @@ impl RaidBotsBuilder {
         Self::default()
     }
 
-    pub fn set_cookie(&mut self, cookie: String) -> &mut Self {
-        self.cookie = Some(cookie);
+    pub fn set_cookie<S>(&mut self, cookie: S) -> &mut Self
+    where
+        S: Into<String>,
+    {
+        self.cookie = Some(cookie.into());
         self
     }
 
@@ -113,4 +117,17 @@ pub enum SimCVersion {
 pub enum SimType {
     Quick,
     Advanced,
+}
+
+#[derive(Deserialize, Serialize, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct SimResponse {
+    job_id: String,
+    sim_id: String,
+    simc_version: String,
+    created: String,
+    fight_length: String,
+    fight_style: String,
+    class: String,
+    spec: String,
 }
