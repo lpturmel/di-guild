@@ -4,7 +4,7 @@ use nom::{
     bytes::complete::take_until,
     character::complete::{char, newline, not_line_ending},
     combinator::recognize,
-    sequence::{preceded, separated_pair, terminated},
+    sequence::{preceded, separated_pair, terminated, tuple},
     IResult,
 };
 use serde::{Deserialize, Serialize};
@@ -34,17 +34,15 @@ fn skip_comment_line(input: &str) -> IResult<&str, &str> {
     recognize(terminated(preceded(tag("#"), not_line_ending), newline))(input)
 }
 fn parse_metadata(input: &str) -> IResult<&str, (&str, &str, &str, &str, &str)> {
-    let (input, _) = tag("# ")(input)?;
-    let (input, character_name) = take_until(" - ")(input)?;
-    let (input, _) = tag(" - ")(input)?;
-    let (input, spec) = take_until(" - ")(input)?;
-    let (input, _) = tag(" - ")(input)?;
-    let (input, date) = take_until(" - ")(input)?;
-    let (input, _) = tag(" - ")(input)?;
-    let (input, region) = take_until("/")(input)?;
-    let (input, _) = tag("/")(input)?;
-    let (input, server) = take_until("\n")(input)?;
-    let (input, _) = tag("\n")(input)?;
+    let (input, (character_name, spec, date, region, server, _)) = tuple((
+        preceded(tag("# "), take_until(" - ")),
+        preceded(tag(" - "), take_until(" - ")),
+        preceded(tag(" - "), take_until(" - ")),
+        preceded(tag(" - "), take_until("/")),
+        preceded(tag("/"), take_until("\n")),
+        newline,
+    ))(input)?;
+
     Ok((input, (character_name, spec, date, region, server)))
 }
 fn parse_character_info(input: &str) -> IResult<&str, (&str, &str, &str, &str, &str, &str, &str)> {
@@ -107,6 +105,8 @@ pub fn parse_simc(input: &str) -> IResult<&str, SimcData> {
 
 #[cfg(test)]
 mod tests {
+    use std::time::Instant;
+
     use super::*;
 
     #[test]
@@ -120,6 +120,7 @@ mod tests {
     fn test_parse_char_metadata() {
         let input = std::fs::read_to_string("tests/mage.txt").expect("to read file");
         let res = parse_metadata(&input);
+        println!("parse_metadata: {:?}", res);
         assert!(res.is_ok());
         let (_, (character_name, spec, date, region, server)) = res.unwrap();
         assert_eq!(character_name, "Ghostmage");
@@ -131,7 +132,9 @@ mod tests {
     #[test]
     fn test_parse_character_info() {
         let input = std::fs::read_to_string("tests/mage.txt").expect("to read file");
+        let now = Instant::now();
         let res = parse_simc(&input);
+        println!("parse_simc: {:?}", now.elapsed());
         assert!(res.is_ok());
         let (_, simc) = res.unwrap();
         println!("{:?}", simc);
