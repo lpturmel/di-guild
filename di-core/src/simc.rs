@@ -1,8 +1,6 @@
-use nom::bytes::complete::tag;
-use nom::character::complete::alphanumeric1;
 use nom::{
-    bytes::complete::take_until,
-    character::complete::{char, newline, not_line_ending},
+    bytes::complete::{tag, take_until},
+    character::complete::{alphanumeric1, char, newline, not_line_ending},
     combinator::recognize,
     sequence::{preceded, separated_pair, terminated, tuple},
     IResult,
@@ -33,6 +31,17 @@ fn parse_key_value_line(input: &str) -> IResult<&str, (&str, &str)> {
 fn skip_comment_line(input: &str) -> IResult<&str, &str> {
     recognize(terminated(preceded(tag("#"), not_line_ending), newline))(input)
 }
+/// Parse the first line of the simc file
+///
+/// # Example
+/// ```ignore
+/// ## GhostMage - Frost - 2024-08-05 17:56 - US/Zul'jin
+/// ```
+///
+/// returns
+/// ```ignore
+/// Ok(("", ("GhostMage", "Frost", "2024-08-05 17:56", "US", "Zul'jin")))
+/// ```
 fn parse_metadata(input: &str) -> IResult<&str, (&str, &str, &str, &str, &str)> {
     let (input, (character_name, spec, date, region, server, _)) = tuple((
         preceded(tag("# "), take_until(" - ")),
@@ -45,6 +54,28 @@ fn parse_metadata(input: &str) -> IResult<&str, (&str, &str, &str, &str, &str)> 
 
     Ok((input, (character_name, spec, date, region, server)))
 }
+/// Parse the 8 lines after the metadata
+/// # Example
+/// ```ignore
+/// # Ghostmage - Frost - 2024-08-05 17:56 - US/Zul'jin
+/// # SimC Addon 11.0.0-01
+/// # WoW 11.0.0.55939, TOC 110000
+/// # Requires SimulationCraft 1000-01 or newer
+/// mage="Ghostmage"
+/// level=70
+/// race=night_elf
+/// region=us
+/// server=zuljin
+/// role=spell
+/// professions=alchemy=19/herbalism=26
+/// spec=frost
+/// talents=CAEArhxZfsv/vllYUrQS3iw2nPzYzsZBzwMziBzYmGjxYmZGGmBmZmZmZmZmZmZmZGzAAAAAAAAAAAAYWAAAAAAAAA
+/// ```
+///
+/// returns
+/// ```ignore
+/// Ok(("", ("mage", "Ghostmage", "70", "night_elf", "us", "zuljin", "frost")))
+/// ```
 fn parse_character_info(input: &str) -> IResult<&str, (&str, &str, &str, &str, &str, &str, &str)> {
     let (input, (class, character_name)) = parse_key_value_line(input)?;
     let character_name = character_name
