@@ -18,6 +18,9 @@ pub enum Error {
     NoApplicationData,
     Json(serde_json::Error),
     MissingRole,
+    BadDiscordAttachment,
+    Sql(libsql::Error),
+    InvalidSimcString,
 }
 impl Error {
     pub fn client_status_and_error(&self) -> (StatusCode, String) {
@@ -36,11 +39,36 @@ impl Error {
                 StatusCode::BAD_REQUEST,
                 "Invalid command, not recognized".to_string(),
             ),
+
             Error::MissingRole => (
                 StatusCode::OK,
                 serde_json::to_string(&InteractionResponse::new(
                     ResponseType::ChannelMessageWithSource,
                     "Not authorized to queue sims".to_string(),
+                ))
+                .unwrap(),
+            ),
+            Error::BadDiscordAttachment => (
+                StatusCode::OK,
+                serde_json::to_string(&InteractionResponse::new(
+                    ResponseType::ChannelMessageWithSource,
+                    "The attachment is either missing or expired".to_string(),
+                ))
+                .unwrap(),
+            ),
+            Error::Sql(e) => (
+                StatusCode::OK,
+                serde_json::to_string(&InteractionResponse::new(
+                    ResponseType::ChannelMessageWithSource,
+                    format!("Sql error: {:?}", e),
+                ))
+                .unwrap(),
+            ),
+            Error::InvalidSimcString => (
+                StatusCode::OK,
+                serde_json::to_string(&InteractionResponse::new(
+                    ResponseType::ChannelMessageWithSource,
+                    "Invalid simc string".to_string(),
                 ))
                 .unwrap(),
             ),
@@ -80,5 +108,11 @@ impl From<SignatureError> for Error {
 impl From<serde_json::Error> for Error {
     fn from(e: serde_json::error::Error) -> Self {
         Error::Json(e)
+    }
+}
+
+impl From<libsql::Error> for Error {
+    fn from(e: libsql::Error) -> Self {
+        Error::Sql(e)
     }
 }

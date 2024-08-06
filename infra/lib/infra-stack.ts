@@ -1,6 +1,9 @@
 import * as cdk from 'aws-cdk-lib';
 import { HttpLambdaIntegration } from 'aws-cdk-lib/aws-apigatewayv2-integrations';
 import { Construct } from 'constructs';
+import { config } from 'dotenv';
+
+config();
 
 export class InfraStack extends cdk.Stack {
     constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -20,6 +23,9 @@ export class InfraStack extends cdk.Stack {
             environment: {
                 RUST_BACKTRACE: "1",
                 QUEUE_URL: queue.queueUrl,
+                RAIDBOTS_COOKIE: process.env.RAIDBOTS_COOKIE!,
+                LIBSQL_URL: process.env.LIBSQL_URL!,
+                LIBSQL_TOKEN: process.env.LIBSQL_TOKEN!,
             },
         });
         const api = new cdk.aws_apigatewayv2.HttpApi(this, `di-http-api`, {

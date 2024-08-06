@@ -1,4 +1,6 @@
 #![allow(clippy::new_ret_no_self)]
+use std::collections::HashMap;
+
 use axum::{http::StatusCode, response::IntoResponse, Json};
 use serde::{Deserialize, Serialize};
 use tracing::info;
@@ -86,6 +88,17 @@ pub struct DiscordData {
     pub name: String,
     pub r#type: u64,
     pub options: Option<Vec<DiscordOption>>,
+    pub resolved: Option<DiscordResolvedData>,
+}
+#[derive(Debug, Serialize, Deserialize)]
+pub struct DiscordResolvedData {
+    pub attachments: Option<HashMap<String, AttachmentObject>>,
+}
+#[derive(Debug, Serialize, Deserialize)]
+pub struct AttachmentObject {
+    pub id: String,
+    pub filename: String,
+    pub url: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DiscordUser {

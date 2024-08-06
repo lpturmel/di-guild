@@ -9,16 +9,16 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SimcData {
-    character_name: String,
-    server: String,
-    region: String,
-    race: String,
-    spec: String,
-    class: String,
-    level: u32,
-    date: String,
+    pub character_name: String,
+    pub server: String,
+    pub region: String,
+    pub race: String,
+    pub spec: String,
+    pub class: String,
+    pub level: u32,
+    pub date: String,
     /// Represents the talent tree points
-    talent_string: String,
+    pub talent_string: String,
 }
 
 fn parse_key_value_line(input: &str) -> IResult<&str, (&str, &str)> {

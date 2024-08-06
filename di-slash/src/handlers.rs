@@ -22,6 +22,7 @@ pub async fn webhook(
             let command = Commands::from_str(&int_data.id)?;
             match command {
                 Commands::QueueSims => Ok(commands::queue_sims(&payload, &state).await?),
+                Commands::AddSimc => Ok(commands::add_simc(&payload, &state).await?),
             }
         }
         _ => Err(Error::BadDiscordRequest),
