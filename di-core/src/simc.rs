@@ -151,7 +151,6 @@ mod tests {
     fn test_parse_char_metadata() {
         let input = std::fs::read_to_string("tests/mage.txt").expect("to read file");
         let res = parse_metadata(&input);
-        println!("parse_metadata: {:?}", res);
         assert!(res.is_ok());
         let (_, (character_name, spec, date, region, server)) = res.unwrap();
         assert_eq!(character_name, "Ghostmage");
@@ -165,10 +164,8 @@ mod tests {
         let input = std::fs::read_to_string("tests/mage.txt").expect("to read file");
         let now = Instant::now();
         let res = parse_simc(&input);
-        println!("parse_simc: {:?}", now.elapsed());
         assert!(res.is_ok());
         let (_, simc) = res.unwrap();
-        println!("{:?}", simc);
         assert_eq!(simc.character_name, "Ghostmage");
         assert_eq!(simc.spec, "frost");
         assert_eq!(simc.date, "2024-08-05 17:56");
