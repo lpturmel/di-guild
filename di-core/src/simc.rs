@@ -136,8 +136,6 @@ pub fn parse_simc(input: &str) -> IResult<&str, SimcData> {
 
 #[cfg(test)]
 mod tests {
-    use std::time::Instant;
-
     use super::*;
 
     #[test]
@@ -162,7 +160,6 @@ mod tests {
     #[test]
     fn test_parse_character_info() {
         let input = std::fs::read_to_string("tests/mage.txt").expect("to read file");
-        let now = Instant::now();
         let res = parse_simc(&input);
         assert!(res.is_ok());
         let (_, simc) = res.unwrap();
