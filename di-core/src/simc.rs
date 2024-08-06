@@ -1,7 +1,7 @@
 use nom::{
     bytes::complete::{tag, take_until},
-    character::complete::{alphanumeric1, char, newline, not_line_ending},
-    combinator::recognize,
+    character::complete::{alphanumeric1, char, line_ending, newline, not_line_ending},
+    combinator::{opt, recognize},
     sequence::{preceded, separated_pair, terminated, tuple},
     IResult,
 };
@@ -88,8 +88,14 @@ fn parse_character_info(input: &str) -> IResult<&str, (&str, &str, &str, &str, &
     let (input, (_, server)) = parse_key_value_line(input)?;
     // Role
     let (input, (_, _)) = parse_key_value_line(input)?;
-    // Profession
-    let (input, (_, _)) = parse_key_value_line(input)?;
+    // Profession can be empty if the character has not learned any
+    let (input, _) = opt(preceded(
+        opt(line_ending),
+        opt(preceded(
+            tag("professions="),
+            recognize(parse_key_value_line),
+        )),
+    ))(input)?;
     let (input, (_, spec)) = parse_key_value_line(input)?;
     Ok((
         input,
@@ -158,7 +164,7 @@ mod tests {
         assert_eq!(server, "Zul'jin");
     }
     #[test]
-    fn test_parse_character_info() {
+    fn test_parse_mage_character_info() {
         let input = std::fs::read_to_string("tests/mage.txt").expect("to read file");
         let res = parse_simc(&input);
         assert!(res.is_ok());
@@ -170,6 +176,51 @@ mod tests {
         assert_eq!(simc.region, "us");
         assert_eq!(simc.race, "night_elf");
         assert_eq!(simc.class, "mage");
+        assert_eq!(simc.level, 70);
+    }
+    #[test]
+    fn test_parse_warlock_character_info() {
+        let input = std::fs::read_to_string("tests/warlock.txt").expect("to read file");
+        let res = parse_simc(&input);
+        assert!(res.is_ok());
+        let (_, simc) = res.unwrap();
+        assert_eq!(simc.character_name, "Locksuout");
+        assert_eq!(simc.spec, "destruction");
+        assert_eq!(simc.date, "2024-08-05 23:05");
+        assert_eq!(simc.server, "zuljin");
+        assert_eq!(simc.region, "us");
+        assert_eq!(simc.race, "void_elf");
+        assert_eq!(simc.class, "warlock");
+        assert_eq!(simc.level, 70);
+    }
+    #[test]
+    fn test_parse_paladin_character_info() {
+        let input = std::fs::read_to_string("tests/paladin.txt").expect("to read file");
+        let res = parse_simc(&input);
+        assert!(res.is_ok());
+        let (_, simc) = res.unwrap();
+        assert_eq!(simc.character_name, "Doomdaim");
+        assert_eq!(simc.spec, "holy");
+        assert_eq!(simc.date, "2024-08-05 23:04");
+        assert_eq!(simc.server, "zuljin");
+        assert_eq!(simc.region, "us");
+        assert_eq!(simc.race, "dwarf");
+        assert_eq!(simc.class, "paladin");
+        assert_eq!(simc.level, 70);
+    }
+    #[test]
+    fn test_parse_dk_no_professions_character_info() {
+        let input = std::fs::read_to_string("tests/dk.txt").expect("to read file");
+        let res = parse_simc(&input);
+        assert!(res.is_ok());
+        let (_, simc) = res.unwrap();
+        assert_eq!(simc.character_name, "Ghostdk");
+        assert_eq!(simc.spec, "blood");
+        assert_eq!(simc.date, "2024-08-05 23:31");
+        assert_eq!(simc.server, "zuljin");
+        assert_eq!(simc.region, "us");
+        assert_eq!(simc.race, "dwarf");
+        assert_eq!(simc.class, "deathknight");
         assert_eq!(simc.level, 70);
     }
 }

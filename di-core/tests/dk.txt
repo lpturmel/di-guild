@@ -1,0 +1,169 @@
+# Ghostdk - Blood - 2024-08-05 23:31 - US/Zul'jin
+# SimC Addon 11.0.0-02
+# WoW 11.0.0.55939, TOC 110000
+# Requires SimulationCraft 1000-01 or newer
+
+deathknight="Ghostdk"
+level=70
+race=dwarf
+region=us
+server=zuljin
+role=tank
+
+spec=blood
+
+talents=CoPAtbMOTHlnKIwUyAn+DK70SjhxMzYMzMmZYGzMz0MMMzYGDAAAAAGzMzMzMzsZmZMAAAYmZmBAAAAAAAAAAgZw2A
+
+# Saved Loadout: shattering bone
+# talents=CoPAtbMOTHlnKIwUyAn+DK70SjBGGAYsMjxMMDDMAAAAAAwwMghhxMAAAmZmxMAAAAAAAAAAAAA
+# Saved Loadout: m+ gorefiend
+# talents=CoPAtbMOTHlnKIwUyAn+DK70SjhxMzYMzMmZYGzMzYGGmZMjBAAAAAjZmZmZmZ2MzMGAAAMzMzAAAAAAAAAAAwMYbA
+
+# Maw of the Haunted Frostbrood (408)
+head=,id=200408,bonus_id=6652/7937/8828/7977/8971/1482/8767
+# Elemental Lariat  (408)
+neck=,id=193001,gem_id=192948/192985/192948,bonus_id=8836/8840/8902/8960/8784/8782/9405/8792/8845/9365,crafted_stats=36/40,crafting_quality=5
+# Jaws of the Haunted Frostbrood (411)
+shoulder=,id=200410,bonus_id=7980/6652/8826/1485/8767
+# Decorated Commander's Cindercloak (402)
+back=,id=195482,enchant_id=6604,bonus_id=6652/8825/8819/7980/1485/8767
+# Breastplate of Proven Knowledge (392)
+chest=,id=193705,enchant_id=6625,bonus_id=8966/7977/6652/8822/8820/9144/1614/8767
+# Primal Molten Vambraces  (417)
+wrist=,id=190502,enchant_id=6580,bonus_id=8836/8840/8902/9404/8846/8793/9365/7937,crafted_stats=40/32,crafting_quality=4
+# Grasps of the Haunted Frostbrood (408)
+hands=,id=200407,bonus_id=7980/6652/8829/1485/8767
+# Unstable Frostfire Belt  (395)
+waist=,id=191623,bonus_id=8836/8840/8902/8960/9405/9365/7937,crafting_quality=5
+# Greaves of the Haunted Frostbrood (415)
+legs=,id=200409,bonus_id=43/8827/8973/7977/1498/8767
+# Valkyra Protector Greatboots (415)
+feet=,id=136772,bonus_id=8973/7977/6652/8822/8818/9144/3294/8767
+# Signet of Titanic Insight  (391)
+finger1=,id=192999,enchant_id=6556,gem_id=192948,bonus_id=8836/8840/8902/8780/9404/8793/8174/9365,crafted_stats=36/32,crafting_quality=4
+# Jeweled Signet of Melandrus (398)
+finger2=,id=134542,enchant_id=6556,bonus_id=7977/6652/7936/9144/8968/3277/8767
+# Treemouth's Festering Splinter (460)
+trinket1=,id=193652,bonus_id=10323/7974/6652/3139/8766
+# Whispering Incarnate Icon (408)
+trinket2=,id=194301,bonus_id=6652/7980/1485/8767
+# Sargha's Smasher (460)
+main_hand=,id=193779,enchant_id=3368,bonus_id=10323/7974/6652/3139/8766
+
+### Gear from Bags
+#
+# Goldsteel Greathelm (405)
+# head=,id=109987,bonus_id=8970/7977/6652/7937/8822/8820/9144/3290/8767
+#
+# Old Seafarer's Headpiece (460)
+# head=,id=193819,bonus_id=10323/7974/6652/10533/10864/3139/8766
+#
+# Goldsteel Greathelm (395)
+# head=,id=109987,bonus_id=8967/7977/6652/7937/8822/8820/9144/3280/8767
+#
+# Skoldiir Helm (398)
+# head=,id=134182,bonus_id=8968/7977/6652/7935/8822/8820/9144/3277/8767
+#
+# Ukhel Ancestry Beads (357)
+# neck=,id=193676,bonus_id=7978/7975/6652/7937/8783,drop_level=67
+#
+# Portalguard Shoulders (402)
+# shoulder=,id=134360,bonus_id=8969/7977/6652/8822/8817/9144/3281/8767
+#
+# Faultline Mantle (402)
+# shoulder=,id=195499,bonus_id=6652/8825/8817/7980/1485/8767
+#
+# Jaws of the Haunted Frostbrood (402)
+# shoulder=,id=200410,bonus_id=41/8826/8969/7977/1476/8767
+#
+# Nokhud Traditionalist's Pauldrons (389)
+# shoulder=,id=193686,bonus_id=8965/7977/6652/8822/8817/9144/1611/8767
+#
+# Fireproof Drape (392)
+# back=,id=193763,bonus_id=8966/7977/6652/8822/8819/9144/1614/8767
+#
+# Fireproof Drape (398)
+# back=,id=193763,bonus_id=8968/7977/6652/8822/8819/9144/1620/8767
+#
+# Mammoth-Trainer's Drape (460)
+# back=,id=193787,bonus_id=10323/7974/6652/10864/3139/8766
+#
+# Breastplate of Proven Knowledge (395)
+# chest=,id=193705,bonus_id=8967/7977/6652/8822/8820/9144/1617/8767
+#
+# Breastplate of the Haunted Frostbrood (382)
+# chest=,id=200405,enchant_id=6625,bonus_id=7982/6652/8830/1459/8767
+#
+# Cuirass of Irreparable Madness (372)
+# chest=,id=193644,enchant_id=6625,bonus_id=7977/6652/8816/1594/8767
+#
+# Binders of the Moldering (360)
+# wrist=,id=193657,bonus_id=7978/7975/6652/7937/8815,drop_level=68
+#
+# Skoldiir Gauntlets (411)
+# hands=,id=134180,bonus_id=8972/7977/6652/8822/8817/9144/3290/8767
+#
+# Venerated Professor's Greaves (372)
+# legs=,id=193706,enchant_id=6490,bonus_id=7977/40/8816/1594/8767
+#
+# Scaleguard's Stalwart Greatboots (392)
+# feet=,id=193728,bonus_id=8966/7977/6652/8822/8818/9144/1614/8767
+#
+# Platinum Star Band (392)
+# finger1=,id=193708,bonus_id=8966/7977/6652/7937/9144/1614/8767
+#
+# Platinum Star Band (392)
+# finger1=,id=193708,bonus_id=8966/7977/6652/7937/9144/1614/8767
+#
+# Circle of Ascended Frost (359)
+# finger1=,id=193731,bonus_id=7976/6652/7937/1581/8766
+#
+# Bloodied Wedding Ring (372)
+# finger1=,id=193671,enchant_id=6563,bonus_id=7977/6652/7937/1594/8767
+#
+# Scalebane Signet (460)
+# finger1=,id=193768,bonus_id=10323/7974/40/10533/3139/8766
+#
+# Blazebinder's Hoof (460)
+# trinket1=,id=193762,bonus_id=10323/7974/6652/3139/8766
+#
+# Bonemaw's Big Toe (398)
+# trinket1=,id=110012,bonus_id=8968/7977/6652/9144/3283/8767
+#
+# Irideus Fragment (372)
+# trinket1=,id=193743,bonus_id=7977/6652/1594/8767
+#
+# Algeth'ar Puzzle Box (405)
+# trinket1=,id=193701,bonus_id=7977/6652/9144/8970/1627/8767
+#
+# Horn of Valor (398)
+# trinket1=,id=133642,bonus_id=8968/7977/6652/9144/3277/8767
+#
+# Dragon Games Equipment (372)
+# trinket1=,id=193719,bonus_id=7977/6652/1594/8767
+#
+# All-Totem of the Master (408)
+# trinket1=,id=194306,bonus_id=7980/6652/1485/8767
+#
+# Undertow Tideblade (460)
+# main_hand=,id=193742,bonus_id=10323/7974/6652/3139/8766
+#
+# Imbued Qalashi Crusher (376)
+# main_hand=,id=195518,bonus_id=6652/7982/1459/8767
+#
+# Algeth'ar Hedgecleaver (372)
+# main_hand=,id=193716,enchant_id=3368,bonus_id=7977/6652/1594/8767
+#
+# Nhallish's Bloody Polearm (408)
+# main_hand=,id=110036,enchant_id=3368,bonus_id=7977/6652/9147/8971/3293/8767
+#
+# Caustic Coldsteel Slicer (402)
+# main_hand=,id=195505,bonus_id=6652/7980/1485/8767
+
+### Additional Character Info
+#
+# upgrade_currencies=c:2245:105
+#
+# slot_high_watermarks=0:460:522/1:408:525/2:411:522/3:395:525/4:395:525/5:415:515/6:415:522/7:417:525/8:411:522/9:398:502/10:460:522/11:460:506/12:460:528/13:0:519/14:402:463/15:0:460/16:0:515
+
+# Checksum: 5870a0c8

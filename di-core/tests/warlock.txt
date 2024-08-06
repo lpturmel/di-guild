@@ -1,0 +1,212 @@
+# Locksuout - Destruction - 2024-08-05 23:05 - US/Zul'jin
+# SimC Addon 11.0.0-01
+# WoW 11.0.0.55939, TOC 110000
+# Requires SimulationCraft 1000-01 or newer
+
+warlock="Locksuout"
+level=70
+race=void_elf
+region=us
+server=zuljin
+role=spell
+professions=alchemy=1/engineering=1
+spec=destruction
+
+talents=CsQAA81jxQD71lYhS/t8p6HgAAmZmZmZEzmhxsZmZYWmNzMmZmlZWmZbxMDAAAAMmhlZmZGAAAAAADAAAAAAAMmBAA
+
+# Saved Loadout: m+
+# talents=CsQAA81jxQD71lYhS/t8p6HgAAmZmZmZgZzwY2MzMMLzmZGzMzyMLzstYmBAAAAGzwyMzMDAAAAAgBAAAAAAAGzAA
+# Saved Loadout: ST
+# talents=CsQAA81jxQD71lYhS/t8p6HgAgxMzMzMDMbGY2MzMMLzmhZmZWMmxiZGAAAAYMzMLzMzMAAAAAAGAAAAAAAzYMDAA
+# Saved Loadout: ST cleave
+# talents=CsQAA81jxQD71lYhS/t8p6HgAgxMzMzMDMbGY2MzMMLz2MMzYWMmZbxMDAAAAMmZmlZmZGAAAAAADAAAAAAghxMAA
+
+# Grimhorns of the Sinister Savant (493)
+head=,id=217212,bonus_id=10532/10313/10867/1485
+# Bromach's Disentombed Locket (460)
+neck=,id=193809,bonus_id=10323/7974/6652/8783/10244/3139/8766
+# Amice of the Sinister Savant (480)
+shoulder=,id=217214,bonus_id=10341/8096/10869/1472
+# Dalaran Defender's Cloak (480)
+back=,id=218080,bonus_id=10341/11311/1602/8767/10871
+# Cursed Robes of the Sinister Savant (480)
+chest=,id=217215,enchant_id=6625,bonus_id=10341/8096/10865/1472
+# Ren'dorei Tabard (1)
+tabard=,id=157758
+# Animated Shackles (460)
+wrist=,id=193792,bonus_id=10323/7974/6652/10532/10864/3139/8766
+# Experimental Safety Gloves (460)
+hands=,id=193713,bonus_id=10323/7974/6652/10864/3139/8766
+# Sky Saddle Cord (493)
+waist=,id=193691,bonus_id=10313/9635/6652/10533/10870/3172/8767
+# Leggings of the Sinister Savant (480)
+legs=,id=217213,enchant_id=6541,bonus_id=6652/10341/8096/10868/1472
+# Khajin's Hailstone Footwraps (460)
+feet=,id=193733,bonus_id=10323/7974/6652/10864/3139/8766
+# Seal of Diurna's Chosen (493)
+finger1=,id=195480,enchant_id=6556,bonus_id=10407/6652/10532/1570/8767
+# Unstable Arcane Loop (460)
+finger2=,id=193633,bonus_id=10323/7974/6652/10532/3139/8766
+# Weathered Northrend Sigil (480)
+trinket1=,id=220304,bonus_id=10341/11311/9927/8767
+# Igneous Flowstone (486)
+trinket2=,id=203996,bonus_id=6652/7982/10343/10884/1537/8767
+# Dreambinder, Loom of the Great Cycle (493)
+main_hand=,id=208616,enchant_id=6643,bonus_id=10407/6652/9418/1524/8767
+
+### Gear from Bags
+#
+# Moonless Hood (376)
+# head=,id=204923,bonus_id=6652/9415/9294/9501/1598
+#
+# Understone Gorget (342)
+# neck=,id=134491,bonus_id=6652/8812/8171/7756,drop_level=69
+#
+# Cloudstrike Pendant (310)
+# neck=,id=144127,bonus_id=6652/8812/8171/7756,drop_level=67
+#
+# Moonless Shoulderpads (376)
+# shoulder=,id=204925,bonus_id=6652/9294/9501/1598
+#
+# Dalaran Defender's Spaulders (480)
+# shoulder=,id=218067,bonus_id=10341/6652/11311/1602/8767/10871
+#
+# Deeprock Cloak (376)
+# back=,id=204914,bonus_id=6652/9294/9501/1598
+#
+# Moonless Robe (376)
+# chest=,id=204920,bonus_id=6652/9294/9501/1598
+#
+# Dalaran Defender's Tunic (480)
+# chest=,id=218061,bonus_id=10341/6652/11311/1602/8767/10871
+#
+# Obsidian Combatant's Wildercloth Bands  (379)
+# wrist=,id=204115,bonus_id=9311/8840/5247/9312/9405/8792/9414,crafted_stats=32,crafting_quality=5
+#
+# Wilfred's Wristwraps of Superior Summoning (291)
+# wrist=,id=173249,enchant_id=6220,gem_id=173130,bonus_id=7025/7882/8156/6647/6648/1588/6935
+#
+# Padded Wraps of Malefic Wrath (291)
+# hands=,id=173244,bonus_id=7031/7882/8156/6649/6648/1588
+#
+# Moonless Gloves (376)
+# hands=,id=204922,bonus_id=6652/9294/9501/1598
+#
+# Gloves of Staunched Wounds (415)
+# hands=,id=159253,bonus_id=9321/6652/9223/9218/9144/3285/8767
+#
+# Dalaran Defender's Greatbelt (480)
+# waist=,id=218052,bonus_id=10341/10532/11311/10871/1602/8767
+#
+# Elegant Cincture of the Ymirjar (291)
+# waist=,id=173248,gem_id=173130,bonus_id=7037/7882/8156/6649/6648/1588/6935
+#
+# Dalaran Defender's Clasp (480)
+# waist=,id=218068,bonus_id=10341/42/10533/11311/10871/1602/8767
+#
+# Moonless Belt (376)
+# waist=,id=204926,bonus_id=6652/9414/9294/9501/1598
+#
+# Fermenting Belt (276)
+# waist=,id=144082,bonus_id=6652/8811/8171/7756,drop_level=65
+#
+# Visions of Implosive Potential (291)
+# waist=,id=173248,gem_id=173130,bonus_id=7033/7882/8156/6647/6648/1588/6935
+#
+# Bladesworn Conjurer's Leggings (155)
+# legs=,id=182272,bonus_id=7195/1472/6616
+#
+# Moonless Trousers (376)
+# legs=,id=204924,bonus_id=6652/9294/9501/1598
+#
+# Unity (291)
+# legs=,id=173246,bonus_id=8129/7882/8156/6647/6649/1588
+#
+# Moonless Slippers (376)
+# feet=,id=204921,bonus_id=6652/9294/9501/1598
+#
+# Codebreaker's Cunning Sandals (298)
+# feet=,id=185788,bonus_id=8765/8136/8137/7359/6652/8270/1615/6646
+#
+# Dalaran Defender's Boots (480)
+# feet=,id=218065,bonus_id=10341/6652/11311/10871/1602/8767
+#
+# Bloodied Wedding Ring (460)
+# finger1=,id=193671,bonus_id=10323/7974/40/10533/3139/8766
+#
+# Stitchflesh's Misplaced Signet (272)
+# finger1=,id=178736,enchant_id=6168,bonus_id=7359/6652/7579/7798/1586/6646
+#
+# Shorting Bit Band (291)
+# finger1=,id=169160,enchant_id=6168,bonus_id=7359/6652/7578/8282/8765/3142/6646
+#
+# Deeprock Loop (379)
+# finger1=,id=204916,bonus_id=6652/9414/9295/9501/1601
+#
+# Logic Loop of Recursion (294)
+# finger1=,id=169158,enchant_id=6168,gem_id=173130,bonus_id=7359/8765/6652/7580/8283/3145/6646
+#
+# Deeprock Ring (376)
+# finger1=,id=204917,bonus_id=6652/9415/9294/9501/1598
+#
+# Obsidian Combatant's Insignia of Alacrity  (379)
+# trinket1=,id=204165,bonus_id=9311/8840/5247/9312/9405,crafting_quality=5
+#
+# Deteriorated Construct Core (298)
+# trinket1=,id=142165,bonus_id=8765/6652/7749/8270/3177/6646
+#
+# Azure Arcanic Amplifier (376)
+# trinket1=,id=198407,bonus_id=9294/8902/6652/1450
+#
+# Idol of Pure Decay (460)
+# trinket1=,id=193660,bonus_id=10323/7974/6652/3139/8766
+#
+# Tome of Unstable Power (327)
+# trinket1=,id=193628,bonus_id=7978/7975/6652,drop_level=60
+#
+# Cabalist's Hymnal (285)
+# trinket1=,id=184028,bonus_id=8761/6652/1550/6646
+#
+# Time-Breaching Talon (343)
+# trinket1=,id=193791,bonus_id=7978/7975/6652,drop_level=63
+#
+# Maruuk Battle Standard (368)
+# main_hand=,id=192033,bonus_id=9156/8902/6652,drop_level=69
+#
+# Searing Tusk Shard (402)
+# main_hand=,id=193790,enchant_id=6643,bonus_id=9313/6652/9147/1624/8767
+#
+# Ulthalesh, the Deadwind Harvester (60)
+# main_hand=,id=128942,gem_id=151013/137412/151013,bonus_id=747/1522,gem_bonus_id=1478/3528/3/3416/1472/3528/3/3395/1478/3336/0/0
+#
+# Staff of Violent Storms (460)
+# main_hand=,id=193699,bonus_id=10323/7974/6652/3139/8766
+#
+# Maruuk Battle Standard (368)
+# main_hand=,id=192033,bonus_id=9156/8902/6652,drop_level=69
+#
+# Dalaran Defender's Battleaxe (480)
+# main_hand=,id=219229,bonus_id=10341/6652/11311/1602/8767
+#
+# Final Grade (460)
+# main_hand=,id=193707,bonus_id=10323/7974/6652/3139/8766
+#
+# Chillworn's Infusion Staff (460)
+# main_hand=,id=193761,bonus_id=10323/7974/6652/3139/8766
+#
+# Mawsworn Javeliner's Targe of the Fireflash (163)
+# off_hand=,id=186139,bonus_id=7453/1694,drop_level=60
+#
+# Neltharic Torch (376)
+# off_hand=,id=204964,bonus_id=6652/9294/9501/1598
+#
+# Rod of Perfect Order (460)
+# off_hand=,id=193745,bonus_id=10323/7974/41/3139/8766
+
+### Additional Character Info
+#
+# upgrade_currencies=c:2806:77/c:2807:35/c:2245:534/c:2122:2
+#
+# slot_high_watermarks=0:493:522/1:460:525/2:480:522/3:480:525/4:493:525/5:480:515/6:460:522/7:460:525/8:460:522/9:460:502/10:480:522/11:480:506/12:493:528/13:402:519/14:0:463/15:0:460/16:460:515
+
+# Checksum: f1b3fc8f

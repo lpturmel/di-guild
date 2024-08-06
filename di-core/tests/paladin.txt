@@ -1,0 +1,118 @@
+# Doomdaim - Holy - 2024-08-05 23:04 - US/Zul'jin
+# SimC Addon 10.2.0-01
+# WoW 11.0.0.55939, TOC 110000
+# Requires SimulationCraft 1000-01 or newer
+
+paladin="Doomdaim"
+level=70
+race=dwarf
+region=us
+server=zuljin
+role=attack
+
+spec=holy
+
+talents=CEEALSUfbn0RkIzCqAITj7R8pAABAABAEBAAIAtIJJtIJFJSRClEo0aJa4ASCBJJEpAkIAgAANgQSCCAAAAAAA
+
+# Saved Loadout: Mythic+
+# talents=CEEALSUfbn0RkIzCqAITj7R8pAABAABAEBAAIAtIJJtIJFJSRClEo0aJa4ASCBJJEpAkIAgAANgQSCCAAAAAAA
+
+# Dalaran Defender's Helm (480)
+head=,id=218063,bonus_id=10341/6652/10533/11311/10871/1602/8767
+# Remembrancer's Radiant Jewels (480)
+neck=,id=223636,bonus_id=10341/11311/1537/8767
+# Dalaran Defender's Spaulders (480)
+shoulder=,id=218067,bonus_id=10341/11311/10871/1602/8767
+# Fireproof Drape (493)
+back=,id=193763,bonus_id=10313/9635/6652/10870/3172/8767
+# Breastplate of Soaring Terror (493)
+chest=,id=193753,bonus_id=10313/9635/6652/10870/3172/8767
+# Dalaran Defender's Bracers (480)
+wrist=,id=218069,bonus_id=10341/10532/11311/10871/1602/8767
+# Dalaran Defender's Gauntlets (493)
+hands=,id=218066,bonus_id=10313/8902/10872/1615/8767
+# Dalaran Defender's Clasp (480)
+waist=,id=218068,bonus_id=10341/10532/11311/10871/1602/8767
+# Dalaran Defender's Greaves (480)
+legs=,id=218006,bonus_id=10341/11311/10871/3157/8767
+# Dalaran Defender's Boots (480)
+feet=,id=218065,bonus_id=10341/11311/10871/1602/8767
+# Ring of Returning Memories (480)
+finger1=,id=223634,bonus_id=10341/10532/11311/1537/8767
+# Signet of the Last Elder (480)
+finger2=,id=207162,bonus_id=41/9600/7980/9572/1511/8767
+# Weathered Northrend Sigil (480)
+trinket1=,id=220304,bonus_id=10341/11311/9927/8767
+# Faded Ebony Scale (480)
+trinket2=,id=223513,bonus_id=10341/11311/3209/8767
+# Dalaran Defender's Scepter (480)
+main_hand=,id=219250,bonus_id=10341/11311/1602/8767
+# Disc of Indomitable Will (489)
+off_hand=,id=158713,bonus_id=9639/6652/9144/9576/9853/8767
+
+### Gear from Bags
+#
+# Dalaran Defender's Mask (480)
+# head=,id=218057,bonus_id=10341/40/10532/11311/10871/1602/8767
+#
+# Dalaran Defender's Helmet (480)
+# head=,id=218073,bonus_id=10341/6652/10532/11311/10871/1602/8767
+#
+# Heartfire Sentinel's Forgehelm (480)
+# head=,id=217198,bonus_id=10532/10341/8096/10867/1472
+#
+# Chain of the Green Flight (457)
+# neck=,id=137311,bonus_id=9561/9639/6652/8783/10245/9144/9461/8767
+#
+# Zealous Pyreknight's Ailettes (460)
+# shoulder=,id=207189,bonus_id=6652/9562/43/9639/9511/1491
+#
+# Dalaran Defender's Epaulets (480)
+# shoulder=,id=218075,bonus_id=10341/6652/11311/10871/1602/8767
+#
+# Potion-Stained Cloak (493)
+# back=,id=193712,bonus_id=10313/9635/6652/10870/3172/8767
+#
+# Dalaran Defender's Robes (480)
+# chest=,id=218047,bonus_id=10341/6652/11311/10871/1602/8767
+#
+# Breastplate of Proven Knowledge (493)
+# chest=,id=193705,bonus_id=10313/9635/6652/10870/3172/8767
+#
+# Zealous Pyreknight's Warplate (483)
+# chest=,id=207194,bonus_id=6652/9515/9639/9581/1514/8767
+#
+# Dream Wardens Tabard (1)
+# tabard=,id=210501
+#
+# Dalaran Defender's Wraps (480)
+# wrist=,id=218060,bonus_id=10341/6652/10533/11311/10871/1602/8767
+#
+# Thornscar Wristguards (483)
+# wrist=,id=134520,bonus_id=9574/9639/6652/9600/9506/9144/9876/8767
+#
+# Greatbelt of Disruption (476)
+# waist=,id=137310,bonus_id=9639/6652/9600/9506/9144/9567/9849/8767
+#
+# Zealous Pyreknight's Cuisses (444)
+# legs=,id=207190,bonus_id=6652/9553/9512/1475
+#
+# Band of Twisted Bark (476)
+# finger1=,id=134531,bonus_id=9639/6652/9600/9144/9567/9849/8767
+#
+# Gore-Crusted Butcher's Block (473)
+# trinket1=,id=159616,bonus_id=9570/9639/6652/9144/9837/8767
+#
+# Algeth'ar Puzzle Box (493)
+# trinket1=,id=193701,bonus_id=10313/9635/6652/3172/8767
+#
+# Dalaran Defender's Sabre (480)
+# main_hand=,id=219251,bonus_id=10341/6652/11311/1586/8767
+
+### Additional Character Info
+#
+# upgrade_currencies=c:2245:224/i:206959:5
+#
+# slot_high_watermarks=0:480:525/1:480:506/2:480:506/3:493:522/4:480:499/5:480:509/6:480:509/7:483:525/8:493:509/9:480:480/10:480:483/11:493:522/12:160:493/13:480:499/14:450:470/15:428:428/16:489:528
+
+# Checksum: f0604462
