@@ -58,7 +58,6 @@ impl IntoDiscordResponse for (ResponseType, String) {
 impl IntoResponse for DiscordResponse {
     fn into_response(self) -> axum::response::Response {
         let res = (StatusCode::OK, Json(self));
-        info!("IntoResponse: {:?}", res);
         res.into_response()
     }
 }

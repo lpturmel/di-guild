@@ -6,7 +6,6 @@ use axum::{extract::Request, middleware::Next, response::Response};
 use axum_extra::headers::Header;
 use axum_extra::TypedHeader;
 use http_body_util::BodyExt;
-use tracing::info;
 
 pub async fn validate_req(
     TypedHeader(timestamp): TypedHeader<SignatureTimestamp>,
@@ -33,8 +32,6 @@ pub async fn validate_req(
 
     let response = next.run(request).await;
 
-    info!("Completed request!");
-    info!("Response: {:?}", response);
     Ok(response)
 }
 

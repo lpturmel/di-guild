@@ -40,7 +40,6 @@ impl RaidBots {
             .build_request(&url, reqwest::Method::POST)
             .json(&req)
             .build()?;
-        println!("{:?}", req);
         let res = self.http_client.execute(req).await?;
         let json = res.json::<serde_json::Value>().await?;
         Ok(json)
