@@ -4,9 +4,11 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-tokio = { version = "1.39.2", features = ["rt", "macros", "rt-multi-thread"] }
-di-core = { path = "../di-core" }
+tokio = { workspace = true, features = ["rt", "macros", "rt-multi-thread"] }
 reqwest = { workspace = true, features = ["json", "rustls-tls"] }
+serde_json.workspace = true
+serde = { workspace = true, features = ["derive"] }
+di-core = { path = "../di-core" }
 dotenv = "0.15.0"
 ed25519-dalek = "2.1.1"
 axum = { version = "0.7.5", features = ["macros"] }
@@ -17,8 +19,6 @@ tracing-subscriber = { version = "0.3.18", features = ["json"] }
 tracing = "0.1.40"
 axum-extra = { version = "0.9.3", features = ["typed-header"] }
 hex = "0.4.3"
-serde_json.workspace = true
-serde = { workspace = true, features = ["derive"] }
 http-body-util = "0.1.2"
 tower = "0.4.13"
 tower-service = "0.3.2"
@@ -26,3 +26,5 @@ axum-aws-lambda = "0.8.0"
 openssl = { version = "0.10.66", features = ["vendored"] }
 tower-http = { version = "0.5.2", features = ["trace"] }
 rand = "0.8.5"
+aws-sdk-sqs = "1.36.0"
+aws-config = "1.5.4"

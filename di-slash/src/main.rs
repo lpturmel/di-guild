@@ -1,3 +1,6 @@
+use std::cell::LazyCell;
+
+use aws_config::BehaviorVersion;
 use axum::body::Body;
 use axum::extract::Request;
 use axum::middleware::from_fn;
@@ -6,11 +9,16 @@ use handlers::webhook;
 use tower_http::trace::TraceLayer;
 
 pub mod commands;
+pub mod config;
 pub mod discord;
 pub mod error;
 pub mod handlers;
 pub mod mw;
 
+#[derive(Debug, Clone)]
+pub struct AppState {
+    sqs_client: aws_sdk_sqs::Client,
+}
 #[tokio::main]
 async fn main() {
     tracing_subscriber::fmt()
@@ -23,10 +31,17 @@ async fn main() {
         TraceLayer::new_for_http().on_request(|_: &Request<Body>, _: &tracing::Span| {
             tracing::info!(message = "begin request!")
         });
+
+    let aws_config = aws_config::load_defaults(BehaviorVersion::latest()).await;
+    let sqs_sdk = aws_sdk_sqs::Client::new(&aws_config);
+    let state = AppState {
+        sqs_client: sqs_sdk,
+    };
     let app = Router::new()
         .route("/webhook", post(webhook))
         .layer(from_fn(mw::validate_req))
-        .layer(trace_layer);
+        .layer(trace_layer)
+        .with_state(state);
 
     #[cfg(debug_assertions)]
     {

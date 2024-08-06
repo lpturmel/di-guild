@@ -1,4 +1,4 @@
-use crate::discord::verify_sig;
+use crate::discord::crypto::verify_sig;
 use crate::error::Error;
 use axum::body::Body;
 use axum::http::{HeaderName, HeaderValue};

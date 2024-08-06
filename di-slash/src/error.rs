@@ -1,3 +1,4 @@
+use crate::discord::api::{InteractionResponse, ResponseType};
 use axum::response::IntoResponse;
 use ed25519_dalek::SignatureError;
 use hex::FromHexError;
@@ -11,10 +12,12 @@ pub enum Error {
     MissingTimestamp,
     BadSignature,
     InvalidCommand,
-    BadDiscordRequest,
     InvalidBody,
+    InvalidRole,
+    BadDiscordRequest,
     NoApplicationData,
     Json(serde_json::Error),
+    MissingRole,
 }
 impl Error {
     pub fn client_status_and_error(&self) -> (StatusCode, String) {
@@ -22,6 +25,7 @@ impl Error {
             Error::MissingSignature => (StatusCode::BAD_REQUEST, "Missing signature".to_string()),
             Error::MissingTimestamp => (StatusCode::BAD_REQUEST, "Missing timestamp".to_string()),
             Error::BadDiscordRequest => (StatusCode::BAD_REQUEST, "Bad request type".to_string()),
+            Error::InvalidRole => (StatusCode::BAD_REQUEST, "Invalid role".to_string()),
             Error::BadSignature => (StatusCode::UNAUTHORIZED, "Bad signature".to_string()),
             Error::Json(e) => (StatusCode::UNPROCESSABLE_ENTITY, e.to_string()),
             Error::InvalidBody => (StatusCode::BAD_REQUEST, "Invalid body".to_string()),
@@ -31,6 +35,14 @@ impl Error {
             Error::InvalidCommand => (
                 StatusCode::BAD_REQUEST,
                 "Invalid command, not recognized".to_string(),
+            ),
+            Error::MissingRole => (
+                StatusCode::OK,
+                serde_json::to_string(&InteractionResponse::new(
+                    ResponseType::ChannelMessageWithSource,
+                    "Not authorized to queue sims".to_string(),
+                ))
+                .unwrap(),
             ),
         }
     }
