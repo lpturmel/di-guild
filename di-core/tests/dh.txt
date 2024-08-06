@@ -1,0 +1,120 @@
+# Feljester - Havoc - 2024-08-05 23:51 - US/Zul'jin
+# SimC Addon 11.0.0-02
+# WoW 11.0.0.55939, TOC 110000
+# Requires SimulationCraft 1000-01 or newer
+
+demonhunter="Feljester"
+level=70
+race=blood_elf
+region=us
+server=zuljin
+role=attack
+professions=alchemy=1/engineering=1
+spec=havoc
+
+talents=CEkAEDLOxe3SEPP2R8Hw6bhoSYmZmxMzgZmZMmJMzAAAAAAAmlhxMjZmZzMz2sNGDMDjlNAAAYMzMGA
+
+# Saved Loadout: ignition
+# talents=CEkAEDLOxe3SEPP2R8Hw6bhoSYmZmxMzgZmZMmBmZAAAAAAAz2wYmxMzsZmZb2GjBmhxyGAAAMmZGDA
+# Saved Loadout: inertia raid
+# talents=CEkAEDLOxe3SEPP2R8Hw6bhoSYmZMmZGMzMjxMwMDAAAAAAY2GGzMmZmtZmZb2GjBmhxyGAAAMmZGDA
+# Saved Loadout: m+_ igni
+# talents=CEkAEDLOxe3SEPP2R8Hw6bhoSYmZmxMzgZmZMmBmZAAAAAAAzywYmxMzsZmZb2GjBmhxyGAAAMmZGDA
+
+# Blackwater Helm (460)
+head=,id=109979,bonus_id=9562/9639/6652/9599/9506/9144/9839/8767
+# Ironshell Pendant (483)
+neck=,id=133359,bonus_id=9574/9639/6652/8784/10244/9144/9889/8767
+# Screaming Torchfiend's Horned Memento (473)
+shoulder=,id=207261,bonus_id=6652/9511/9570/9639/1504/8767
+# Wind Wolf Shroud (437)
+back=,id=210134,enchant_id=6598,bonus_id=6652/9551/1494/8766
+# Screaming Torchfiend's Binding (476)
+chest=,id=207266,enchant_id=6625,bonus_id=6652/9639/9515/9567/1507/8767
+# Life-Bound Bindings  (459)
+wrist=,id=193419,enchant_id=6580,bonus_id=8836/8840/8902/9404/8932/8960/8791/9498/9600,crafted_stats=40/36,crafting_quality=4
+# Screaming Torchfiend's Grasp (463)
+hands=,id=207264,bonus_id=40/7979/9514/9563/1494/8767
+# Hound-Jowl Waistband (483)
+waist=,id=159341,bonus_id=9574/9639/6652/9600/9506/9144/9847/8767
+# Screaming Torchfiend's Blazewraps (476)
+legs=,id=207262,enchant_id=6490,bonus_id=9571/42/9639/9512/1507
+# Twisted Blossom Stompers (467)
+feet=,id=207126,enchant_id=6613,bonus_id=6652/9508/7980/9568/1498/8767
+# Signet of Titanic Insight  (463)
+finger1=,id=192999,enchant_id=6550,gem_id=192922,bonus_id=8836/8840/8902/8780/9405/8791/8932/8960/9498,crafted_stats=40/36,crafting_quality=5
+# Arch-Druid's Tainted Seal (463)
+finger2=,id=134487,enchant_id=6550,bonus_id=9563/9639/6652/9600/9144/9836/8767
+# Witherbark's Branch (460)
+trinket1=,id=109999,bonus_id=9639/6652/9144/9562/9839/8767
+# Porcelain Crab (450)
+trinket2=,id=133192,bonus_id=9555/9639/6652/9144/9836/8767
+# Primal Molten Longsword  (463)
+main_hand=,id=190507,enchant_id=6643,bonus_id=8836/8840/8902/9405/8791/9498,crafted_stats=32/40,crafting_quality=5
+# Stormslash (460)
+off_hand=,id=193688,bonus_id=10323/7974/40/3139/8766
+
+### Gear from Bags
+#
+# Hood of Perpetual Conflict (450)
+# head=,id=207936,bonus_id=9555/9639/6652/9600/9506/9144/1537/8767
+#
+# Perennial Pompon Pendant (424)
+# neck=,id=209915,bonus_id=6652/8784/10244/9547/1481/8766
+#
+# Titanic Shouldersparks (447)
+# shoulder=,id=207873,bonus_id=9554/9639/42/9506/9144/1537/8767
+#
+# Shroud of Blazing Slaughter (262)
+# back=,id=173242,enchant_id=6208,bonus_id=7698/6649/6650/7451/1559/8156
+#
+# Everburn (262)
+# back=,id=173242,enchant_id=6208,bonus_id=7219/6649/6650/7451/1559/8156
+#
+# Spymaster's Wrap (476)
+# chest=,id=211404,enchant_id=6625,bonus_id=9639/6652/9506/9144/9567/3155/8767
+#
+# Dragonkiln Chestguard (460)
+# chest=,id=193776,bonus_id=10323/7974/6652/10864/3139/8766
+#
+# Fearless Faerie's Wristbands (437)
+# wrist=,id=209910,enchant_id=6580,bonus_id=6652/9600/9551/1494/8766
+#
+# Venerated Raptorhide Bindings (470)
+# wrist=,id=160214,bonus_id=9569/9639/6652/9599/9506/9144/9834/8767
+#
+# Crystalline Tender's Belt (447)
+# waist=,id=210371,gem_id=192922,bonus_id=9506/6652/9516/9554/1478/8767
+#
+# Screaming Torchfiend's Blazewraps (441)
+# legs=,id=207262,enchant_id=6490,bonus_id=6652/9552/9512/1472
+#
+# Treads of Restored Order (460)
+# feet=,id=193739,bonus_id=10323/7974/6652/10864/3139/8766
+#
+# Algeth'ar Puzzle Box (372)
+# trinket1=,id=193701,bonus_id=7977/6652/1594/8767
+#
+# Algeth'ar Puzzle Box (460)
+# trinket1=,id=193701,bonus_id=10323/7974/6652/3139/8766
+#
+# Algeth'ar Puzzle Box (460)
+# trinket1=,id=193701,bonus_id=10323/7974/6652/3139/8766
+#
+# Gardener's Lightstaff (1)
+# main_hand=,id=210675
+#
+# Remnant Charglaive (447)
+# main_hand=,id=207791,enchant_id=6655,bonus_id=6652/7982/9554/1478/8767
+
+### Weekly Reward Choices
+#
+### End of Weekly Reward Choices
+
+### Additional Character Info
+#
+# upgrade_currencies=c:2245:135/c:1792:503
+#
+# slot_high_watermarks=0:460:522/1:483:525/2:473:522/3:476:525/4:483:525/5:476:515/6:467:522/7:470:525/8:463:522/9:463:502/10:460:522/11:437:506/12:1:528/13:156:519/14:463:463/15:460:460/16:156:515
+
+# Checksum: 7749f38d

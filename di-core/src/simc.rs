@@ -223,4 +223,19 @@ mod tests {
         assert_eq!(simc.class, "deathknight");
         assert_eq!(simc.level, 70);
     }
+    #[test]
+    fn test_parse_dh_professions_character_info() {
+        let input = std::fs::read_to_string("tests/dh.txt").expect("to read file");
+        let res = parse_simc(&input);
+        assert!(res.is_ok());
+        let (_, simc) = res.unwrap();
+        assert_eq!(simc.character_name, "Feljester");
+        assert_eq!(simc.spec, "havoc");
+        assert_eq!(simc.date, "2024-08-05 23:51");
+        assert_eq!(simc.server, "zuljin");
+        assert_eq!(simc.region, "us");
+        assert_eq!(simc.race, "blood_elf");
+        assert_eq!(simc.class, "demonhunter");
+        assert_eq!(simc.level, 70);
+    }
 }
