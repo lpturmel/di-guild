@@ -1,5 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { HttpLambdaIntegration } from 'aws-cdk-lib/aws-apigatewayv2-integrations';
+import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';
 import { Construct } from 'constructs';
 import { config } from 'dotenv';
 
@@ -50,8 +51,10 @@ export class InfraStack extends cdk.Stack {
             },
         });
 
-        queue.grantSendMessages(queueLambda);
+        queue.grantSendMessages(func);
         queue.grantConsumeMessages(queueLambda);
+
+        queueLambda.addEventSource(new SqsEventSource(queue));
 
         // output the api url
         new cdk.CfnOutput(this, "api-url", {

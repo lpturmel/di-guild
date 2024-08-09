@@ -3,10 +3,13 @@ use crate::discord::api::{DiscordPayload, DiscordResponse, ResponseType};
 use crate::discord::roles::Role;
 use crate::error::{Error, Result};
 use crate::AppState;
-use di_core::RaidBots;
+use aws_sdk_sqs::types::SendMessageBatchRequestEntry;
+use di_core::{RaidBots, SimDetailsRow};
+use futures::StreamExt;
+use libsql::de::from_row;
 use std::str::FromStr;
 
-pub async fn queue_sims(payload: &DiscordPayload, _state: &AppState) -> Result<DiscordResponse> {
+pub async fn queue_sims(payload: &DiscordPayload, state: &AppState) -> Result<DiscordResponse> {
     let authorized = payload
         .member
         .as_ref()
@@ -22,11 +25,60 @@ pub async fn queue_sims(payload: &DiscordPayload, _state: &AppState) -> Result<D
         return Err(Error::MissingRole);
     }
 
-    let _ = RaidBots::new().set_cookie(&CONFIG.cookie).build();
+    let raidbots = RaidBots::new().set_cookie(&CONFIG.cookie).build();
+
+    let conn = state.db.clone().connect()?;
+    let active_char_data = conn
+        .query(
+            "
+        SELECT *
+        FROM sim_details
+        ",
+            (),
+        )
+        .await?;
+
+    let active_char_data = active_char_data
+        .into_stream()
+        .map(|r| from_row::<SimDetailsRow>(&r.unwrap()).unwrap())
+        .collect::<Vec<_>>()
+        .await;
+
+    let futures = active_char_data
+        .iter()
+        .map(|row| raidbots.create_sim(&row.sim_str))
+        .collect::<Vec<_>>();
+
+    let results = futures::future::join_all(futures).await;
+
+    let queued_jobs = results.into_iter().flatten().collect::<Vec<_>>();
+
+    if queued_jobs.is_empty() {
+        return Err(Error::NoSimsToQueue);
+    }
+    let sqs_messages = queued_jobs
+        .iter()
+        .map(|job| {
+            SendMessageBatchRequestEntry::builder()
+                .set_id(Some(job.job_id.clone()))
+                .message_body(serde_json::to_string(&job).unwrap())
+                .build()
+                .expect("to build message")
+        })
+        .collect::<Vec<_>>();
+
+    let res = state
+        .sqs_client
+        .send_message_batch()
+        .queue_url(CONFIG.queue_url.to_string())
+        .set_entries(Some(sqs_messages))
+        .send()
+        .await
+        .map_err(|e| Error::SqsError(format!("{:?}", e)))?;
 
     let res = (
         ResponseType::ChannelMessageWithSource,
-        "Queueing sims...".to_string(),
+        format!("Queued {} sim(s)", queued_jobs.len()),
     )
         .into();
 
@@ -64,8 +116,8 @@ pub async fn add_simc(payload: &DiscordPayload, state: &AppState) -> Result<Disc
     let formatted_datetime = current_datetime.format("%Y-%m-%d %H:%M:%S").to_string();
     let character_name = simc_data.character_name.to_lowercase();
 
-    let _ = state
-        .db
+    let conn = state.db.clone().connect()?;
+    let _ = conn
         .execute(
             "INSERT INTO sim_details (user_id, name, sim_str, added_at) VALUES (?,?,?,?)",
             libsql::params![

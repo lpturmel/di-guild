@@ -16,11 +16,13 @@ pub enum Error {
     InvalidRole,
     BadDiscordRequest,
     NoApplicationData,
-    Json(serde_json::Error),
     MissingRole,
     BadDiscordAttachment,
-    Sql(libsql::Error),
     InvalidSimcString,
+    Sql(libsql::Error),
+    Json(serde_json::Error),
+    SqsError(String),
+    NoSimsToQueue,
 }
 impl Error {
     pub fn client_status_and_error(&self) -> (StatusCode, String) {
@@ -71,6 +73,18 @@ impl Error {
                     "Invalid simc string".to_string(),
                 ))
                 .unwrap(),
+            ),
+            Error::NoSimsToQueue => (
+                StatusCode::OK,
+                serde_json::to_string(&InteractionResponse::new(
+                    ResponseType::ChannelMessageWithSource,
+                    "No sim strings found, skipping SQS batch".to_string(),
+                ))
+                .unwrap(),
+            ),
+            Error::SqsError(_) => (
+                StatusCode::INTERNAL_SERVER_ERROR,
+                "Something went wrong with SQS".to_string(),
             ),
         }
     }

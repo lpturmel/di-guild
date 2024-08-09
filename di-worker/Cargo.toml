@@ -8,3 +8,8 @@ lambda_runtime = "0.13.0"
 serde_json.workspace = true
 serde = { workspace = true, features = ["derive"] }
 tokio = { workspace = true, features = ["rt", "macros", "rt-multi-thread"] }
+aws_lambda_events = { version = "0.15.1", features = ["sqs"] }
+reqwest = { workspace = true, features = ["json"] }
+di-core = { path = "../di-core" }
+tracing-subscriber = { version = "0.3.18", features = ["json"] }
+tracing = "0.1.40"

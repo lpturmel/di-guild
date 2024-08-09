@@ -29,7 +29,7 @@ impl RaidBots {
         req
     }
 
-    pub async fn create_sim(&self, sim_str: &str) -> Result<serde_json::Value> {
+    pub async fn create_sim(&self, sim_str: &str) -> Result<SimResponse> {
         let req: SimRequest = SimRequest {
             sim_type: SimType::Advanced,
             simc_version: SimCVersion::Weekly,
@@ -41,7 +41,7 @@ impl RaidBots {
             .json(&req)
             .build()?;
         let res = self.http_client.execute(req).await?;
-        let json = res.json::<serde_json::Value>().await?;
+        let json = res.json::<SimResponse>().await?;
         Ok(json)
     }
 
@@ -121,12 +121,18 @@ pub enum SimType {
 #[derive(Deserialize, Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct SimResponse {
-    job_id: String,
-    sim_id: String,
-    simc_version: String,
-    created: String,
-    fight_length: String,
-    fight_style: String,
-    class: String,
-    spec: String,
+    pub job_id: String,
+    pub sim_id: String,
+    pub simc_version: String,
+    pub created: String,
+    pub fight_length: usize,
+    pub fight_style: String,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+pub struct SimDetailsRow {
+    pub user_id: String,
+    pub name: String,
+    pub sim_str: String,
+    pub added_at: String,
 }
