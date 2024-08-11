@@ -4,6 +4,7 @@ pub type Result<T> = std::result::Result<T, Error>;
 pub enum Error {
     Json(serde_json::Error),
     Reqwest(reqwest::Error),
+    NotFound,
 }
 
 impl From<serde_json::Error> for Error {

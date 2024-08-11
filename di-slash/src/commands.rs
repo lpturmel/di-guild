@@ -4,7 +4,7 @@ use crate::discord::roles::Role;
 use crate::error::{Error, Result};
 use crate::AppState;
 use aws_sdk_sqs::types::SendMessageBatchRequestEntry;
-use di_core::{RaidBots, SimDetailsRow};
+use di_core::{RaidBots, SimDetailsRow, SqsWorkerPayload};
 use futures::StreamExt;
 use libsql::de::from_row;
 use std::str::FromStr;
@@ -46,28 +46,49 @@ pub async fn queue_sims(payload: &DiscordPayload, state: &AppState) -> Result<Di
 
     let futures = active_char_data
         .iter()
-        .map(|row| raidbots.create_sim(&row.sim_str))
+        .map(|row| (raidbots.create_sim(&row.sim_str), row.user_id.clone()))
         .collect::<Vec<_>>();
 
-    let results = futures::future::join_all(futures).await;
+    let results_with_ids =
+        futures::future::join_all(futures.into_iter().map(|(future, user_id)| async {
+            let result = future.await;
+            (user_id, result)
+        }))
+        .await;
+    // let results = futures::future::join_all(futures).await;
 
-    let queued_jobs = results.into_iter().flatten().collect::<Vec<_>>();
+    let queued_jobs = results_with_ids
+        .into_iter()
+        .filter_map(|(user_id, result)| match result {
+            Ok(sim_response) => Some((user_id, sim_response)),
+            Err(e) => {
+                tracing::error!("Error creating sim: {:?}", e);
+                None
+            }
+        })
+        .collect::<Vec<_>>();
+    // let queued_jobs = results.into_iter().flatten().collect::<Vec<_>>();
 
     if queued_jobs.is_empty() {
         return Err(Error::NoSimsToQueue);
     }
     let sqs_messages = queued_jobs
         .iter()
-        .map(|job| {
+        .map(|(user_id, job)| {
+            let payload = SqsWorkerPayload {
+                user_id: user_id.clone(),
+                request_id: uuid::Uuid::new_v4().to_string(),
+                sim_response: job.clone(),
+            };
             SendMessageBatchRequestEntry::builder()
                 .set_id(Some(job.job_id.clone()))
-                .message_body(serde_json::to_string(&job).unwrap())
+                .message_body(serde_json::to_string(&payload).unwrap())
                 .build()
                 .expect("to build message")
         })
         .collect::<Vec<_>>();
 
-    let res = state
+    let _ = state
         .sqs_client
         .send_message_batch()
         .queue_url(CONFIG.queue_url.to_string())

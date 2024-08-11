@@ -990,6 +990,7 @@ dependencies = [
  "tower-service",
  "tracing",
  "tracing-subscriber",
+ "uuid",
 ]
 
 [[package]]
@@ -997,8 +998,11 @@ name = "di-worker"
 version = "0.1.0"
 dependencies = [
  "aws_lambda_events",
+ "chrono",
  "di-core",
+ "dotenv",
  "lambda_runtime",
+ "libsql",
  "reqwest",
  "serde",
  "serde_json",

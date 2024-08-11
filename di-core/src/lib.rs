@@ -1,5 +1,5 @@
 #![allow(clippy::new_ret_no_self)]
-use error::Result;
+use error::{Error, Result};
 use serde::{Deserialize, Serialize};
 
 pub mod error;
@@ -7,7 +7,7 @@ pub mod simc;
 
 pub const RAIDBOTS_BASE_URL: &str = "https://www.raidbots.com";
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct RaidBots {
     /// Cookie to authenticate with premium account
     cookie: Option<String>,
@@ -42,6 +42,14 @@ impl RaidBots {
             .build()?;
         let res = self.http_client.execute(req).await?;
         let json = res.json::<SimResponse>().await?;
+        Ok(json)
+    }
+
+    pub async fn get_report(&self, report_id: &str) -> Result<SimReportData> {
+        let url = format!("{}/reports/{}/data.json", RAIDBOTS_BASE_URL, report_id);
+        let req = self.build_request(&url, reqwest::Method::GET).build()?;
+        let response = self.http_client.execute(req).await?;
+        let json = response.json::<SimReportData>().await?;
         Ok(json)
     }
 
@@ -118,7 +126,7 @@ pub enum SimType {
     Advanced,
 }
 
-#[derive(Deserialize, Serialize, Debug)]
+#[derive(Deserialize, Clone, Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct SimResponse {
     pub job_id: String,
@@ -135,4 +143,44 @@ pub struct SimDetailsRow {
     pub name: String,
     pub sim_str: String,
     pub added_at: String,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+pub struct SqsWorkerPayload {
+    /// The shared request id used to identify groups of messages
+    pub request_id: String,
+    pub user_id: String,
+    #[serde(flatten)]
+    pub sim_response: SimResponse,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+pub struct SimReportData {
+    pub sim: SimReportDataSim,
+}
+#[derive(Debug, Deserialize, Serialize)]
+pub struct SimReportDataSim {
+    pub players: Vec<SimReportDataSimPlayer>,
+}
+#[derive(Debug, Deserialize, Serialize)]
+pub struct SimReportDataSimPlayer {
+    pub name: String,
+    pub collected_data: SimReportDataSimPlayerCollectedData,
+}
+#[derive(Debug, Deserialize, Serialize)]
+pub struct SimReportDataSimPlayerCollectedData {
+    pub dps: SimReportDataSimPlayerCollectedDataDps,
+}
+#[derive(Debug, Deserialize, Serialize)]
+pub struct SimReportDataSimPlayerCollectedDataDps {
+    pub sum: f64,
+    pub count: f64,
+    pub mean: f64,
+    pub min: f64,
+    pub max: f64,
+    pub median: f64,
+    pub variance: f64,
+    pub std_dev: f64,
+    pub mean_variance: f64,
+    pub mean_std_dev: f64,
 }

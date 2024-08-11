@@ -10,10 +10,18 @@ export class InfraStack extends cdk.Stack {
     constructor(scope: Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
+        const deadLetterQueue = new cdk.aws_sqs.Queue(this, "di-slash-dlq", {
+            queueName: "di-slash-dlq",
+            retentionPeriod: cdk.Duration.days(1),
+        });
         const queue = new cdk.aws_sqs.Queue(this, "di-slash-queue", {
             deliveryDelay: cdk.Duration.minutes(1),
             queueName: "di-slash-queue",
             retentionPeriod: cdk.Duration.days(1),
+            deadLetterQueue: {
+                queue: deadLetterQueue,
+                maxReceiveCount: 10,
+            },
         });
 
         const func = new cdk.aws_lambda.Function(this, 'di-slash-function', {
@@ -48,13 +56,18 @@ export class InfraStack extends cdk.Stack {
             environment: {
                 RUST_BACKTRACE: "1",
                 QUEUE_URL: queue.queueUrl,
+                RAIDBOTS_COOKIE: process.env.RAIDBOTS_COOKIE!,
+                LIBSQL_URL: process.env.LIBSQL_URL!,
+                LIBSQL_TOKEN: process.env.LIBSQL_TOKEN!,
             },
         });
 
         queue.grantSendMessages(func);
         queue.grantConsumeMessages(queueLambda);
+        deadLetterQueue.grantConsumeMessages(queueLambda);
 
         queueLambda.addEventSource(new SqsEventSource(queue));
+        queueLambda.addEventSource(new SqsEventSource(deadLetterQueue));
 
         // output the api url
         new cdk.CfnOutput(this, "api-url", {

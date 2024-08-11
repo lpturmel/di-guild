@@ -41,7 +41,6 @@ async fn main() {
     .build()
     .await
     .expect("to build db");
-    // let conn = db.connect().expect("to connect to db");
 
     let aws_config = aws_config::load_defaults(BehaviorVersion::latest()).await;
     let sqs_sdk = aws_sdk_sqs::Client::new(&aws_config);

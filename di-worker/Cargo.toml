@@ -13,3 +13,6 @@ reqwest = { workspace = true, features = ["json"] }
 di-core = { path = "../di-core" }
 tracing-subscriber = { version = "0.3.18", features = ["json"] }
 tracing = "0.1.40"
+dotenv = "0.15.0"
+libsql = "0.4.0"
+chrono = "0.4.38"
